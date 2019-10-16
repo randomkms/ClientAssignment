@@ -1,0 +1,40 @@
+﻿using BackendCommon;
+using ClientAssignment.Helpers;
+using ClientAssignment.Interfaces;
+using ClientAssignment.Services;
+using ClientAssignment.Views;
+using Prism.Ioc;
+using Prism.Regions;
+using Prism.Unity;
+using System.Windows;
+
+namespace ClientAssignment
+{
+    public partial class App : PrismApplication
+    {
+        protected override Window CreateShell()
+        {
+            return Container.Resolve<MainWindow>();
+        }
+
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+            containerRegistry.RegisterForNavigation<Search>();
+            containerRegistry.RegisterForNavigation<Email>();
+            containerRegistry.RegisterForNavigation<Browser>();
+            var restService = new RestService("https://webapp-qa.wisestamp.com/api/");
+            containerRegistry.RegisterInstance<IRestService>(restService);
+            containerRegistry.RegisterInstance<IUserService>(new UserService(restService));
+            containerRegistry.RegisterInstance<ISignatureService>(new SignatureService(restService));
+            containerRegistry.Register<ILoaderService, LoaderService>();
+            containerRegistry.Register<Loader>();
+        }
+
+        protected override void OnInitialized()
+        {
+            var regionManager = Container.Resolve<IRegionManager>();
+            regionManager.RequestNavigate("SearchRegion", "Search");
+            base.OnInitialized();
+        }
+    }
+}

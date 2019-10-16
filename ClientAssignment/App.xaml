@@ -1,0 +1,27 @@
+﻿<prism:PrismApplication x:Class="ClientAssignment.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	         xmlns:prism="http://prismlibrary.com/"
+             xmlns:customMessages="clr-namespace:TemplatesWPF.CustomMessages;assembly=TemplatesWPF"
+             xmlns:local="clr-namespace:ClientAssignment">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.LightGreen.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.LightGreen.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                <Setter Property="Height" Value="Auto" />
+                <Setter Property="Width" Value="Auto" />
+                <Setter Property="MinHeight" Value="35" />
+            </Style>
+
+            <Style TargetType="{x:Type customMessages:CustomMessage}">
+                <Setter Property="SizeScale" Value="0.8" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</prism:PrismApplication>
