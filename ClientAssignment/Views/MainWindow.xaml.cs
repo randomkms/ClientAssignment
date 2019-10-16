@@ -6,7 +6,7 @@ namespace ClientAssignment.Views
     {
         public MainWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

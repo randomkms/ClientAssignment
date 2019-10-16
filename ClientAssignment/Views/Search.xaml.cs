@@ -6,7 +6,7 @@ namespace ClientAssignment.Views
     {
         public Search()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

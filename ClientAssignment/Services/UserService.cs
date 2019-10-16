@@ -1,12 +1,12 @@
-﻿using BackendCommon;
-using ClientAssignment.Interfaces;
-using ClientAssignment.Models;
-using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using BackendCommon;
+using ClientAssignment.Interfaces;
+using ClientAssignment.Models;
+using Newtonsoft.Json.Linq;
 
 namespace ClientAssignment.Services
 {
@@ -20,7 +20,7 @@ namespace ClientAssignment.Services
 
         public async Task<User> GetById(string id, CancellationToken cancellationToken)
         {
-            var response = await this._restService.GetAsync($"users/get?uid={id}&without_signatures=true", cancellationToken);
+            string response = await this._restService.GetAsync($"users/get?uid={id}&without_signatures=true", cancellationToken);
             this.EnsureSuccess(response);
             var dataObj = JObject.Parse(response);
             var user = new User

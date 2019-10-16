@@ -1,17 +1,12 @@
-﻿using ClientAssignment.Interfaces;
-using ClientAssignment.Models;
-using ClientAssignment.Views;
-using MaterialDesignThemes.Wpf;
-using Prism.Commands;
-using Prism.Ioc;
-using Prism.Mvvm;
-using Prism.Regions;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using ClientAssignment.Interfaces;
+using ClientAssignment.Models;
+using Prism.Commands;
+using Prism.Mvvm;
+using Prism.Regions;
 using TemplatesWPF.CustomMessages;
 
 namespace ClientAssignment.ViewModels
@@ -25,8 +20,9 @@ namespace ClientAssignment.ViewModels
         private string _userId = "5059537892278272";
         public string UserId
         {
-            get { return _userId; }
-            set { SetProperty(ref _userId, value); }
+            get => this._userId;
+
+            set => this.SetProperty(ref this._userId, value);
         }
 
         public DelegateCommand<string> SearchCommand { get; set; }
@@ -36,12 +32,12 @@ namespace ClientAssignment.ViewModels
             this._userService = userService;
             this._regionManager = regionManager;
             this._loaderService = loaderService;
-            SearchCommand = new DelegateCommand<string>(SearchClicked, CanSearch).ObservesProperty(() => UserId);
+            this.SearchCommand = new DelegateCommand<string>(this.SearchClicked, this.CanSearch).ObservesProperty(() => this.UserId);
         }
 
         private bool CanSearch(string userId)
         {
-            return !string.IsNullOrWhiteSpace(UserId); //change
+            return !string.IsNullOrWhiteSpace(this.UserId); //change
         }
 
         private async void SearchClicked(string userId)

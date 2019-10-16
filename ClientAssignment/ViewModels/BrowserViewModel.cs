@@ -1,9 +1,5 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
+﻿using Prism.Mvvm;
 using Prism.Regions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace ClientAssignment.ViewModels
 {
@@ -12,8 +8,9 @@ namespace ClientAssignment.ViewModels
         private string _renderedHTML;
         public string RenderedHTML
         {
-            get { return _renderedHTML; }
-            set { SetProperty(ref _renderedHTML, value); }
+            get => this._renderedHTML;
+
+            set => this.SetProperty(ref this._renderedHTML, value);
         }
 
         public BrowserViewModel()

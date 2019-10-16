@@ -7,8 +7,9 @@ namespace ClientAssignment.ViewModels
         private string _title = "User checker";
         public string Title
         {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
+            get => this._title;
+
+            set => this.SetProperty(ref this._title, value);
         }
 
         public MainWindowViewModel()

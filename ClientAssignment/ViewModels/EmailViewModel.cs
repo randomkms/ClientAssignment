@@ -1,14 +1,12 @@
-﻿using ClientAssignment.Interfaces;
+﻿using System;
+using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
+using ClientAssignment.Interfaces;
 using ClientAssignment.Models;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using TemplatesWPF.CustomMessages;
 
 namespace ClientAssignment.ViewModels
@@ -24,14 +22,16 @@ namespace ClientAssignment.ViewModels
 
         public User CurrentUser
         {
-            get { return _user; }
-            set { SetProperty(ref _user, value); }
+            get => this._user;
+
+            set => this.SetProperty(ref this._user, value);
         }
 
         public Signature SelectedSignature
         {
-            get { return _selectedSignature; }
-            set { SetProperty(ref _selectedSignature, value); }
+            get => this._selectedSignature;
+
+            set => this.SetProperty(ref this._selectedSignature, value);
         }
 
         public DelegateCommand<string> RenderCommand { get; set; }
@@ -41,7 +41,7 @@ namespace ClientAssignment.ViewModels
             this._signatureService = signatureService;
             this._regionManager = regionManager;
             this._loaderService = loaderService;
-            RenderCommand = new DelegateCommand<string>(RenderClicked, CanRender).ObservesProperty(() => SelectedSignature);
+            this.RenderCommand = new DelegateCommand<string>(this.RenderClicked, this.CanRender).ObservesProperty(() => this.SelectedSignature);
         }
 
         private bool CanRender(string signatureId)

@@ -13,8 +13,8 @@ namespace ClientAssignment.Models
 
         public ApiException(bool result, string error)
         {
-            Result = result;
-            Message = error;
+            this.Result = result;
+            this.Message = error;
         }
     }
 }

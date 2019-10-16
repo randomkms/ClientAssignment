@@ -1,4 +1,5 @@
-﻿using BackendCommon;
+﻿using System.Windows;
+using BackendCommon;
 using ClientAssignment.Helpers;
 using ClientAssignment.Interfaces;
 using ClientAssignment.Services;
@@ -6,7 +7,6 @@ using ClientAssignment.Views;
 using Prism.Ioc;
 using Prism.Regions;
 using Prism.Unity;
-using System.Windows;
 
 namespace ClientAssignment
 {
@@ -14,7 +14,7 @@ namespace ClientAssignment
     {
         protected override Window CreateShell()
         {
-            return Container.Resolve<MainWindow>();
+            return this.Container.Resolve<MainWindow>();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -32,7 +32,7 @@ namespace ClientAssignment
 
         protected override void OnInitialized()
         {
-            var regionManager = Container.Resolve<IRegionManager>();
+            var regionManager = this.Container.Resolve<IRegionManager>();
             regionManager.RequestNavigate("SearchRegion", "Search");
             base.OnInitialized();
         }

@@ -6,7 +6,7 @@ namespace ClientAssignment.Views
     {
         public Browser()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

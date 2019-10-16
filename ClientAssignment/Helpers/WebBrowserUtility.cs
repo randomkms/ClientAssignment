@@ -28,7 +28,10 @@ namespace ClientAssignment.Helpers
         {
             try
             {
-                if (!(o is WebBrowser webBrowser)) return;
+                if (!(o is WebBrowser webBrowser))
+                {
+                    return;
+                }
 
                 webBrowser.NavigateToString(e.NewValue as string ?? "&nbsp;");
             }

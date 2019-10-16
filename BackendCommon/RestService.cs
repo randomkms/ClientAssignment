@@ -21,20 +21,11 @@ namespace BackendCommon
 
         public HttpRequestHeaders RequestHeaders => this.client.DefaultRequestHeaders;
 
-        public string BaseAddress
-        {
-            get
-            {
-                return this.client.BaseAddress.OriginalString;
-            }
-        }
+        public string BaseAddress => this.client.BaseAddress.OriginalString;
 
         public CookieContainer Cookies
         {
-            get
-            {
-                return this.clientHandler.CookieContainer;
-            }
+            get => this.clientHandler.CookieContainer;
 
             set
             {
@@ -45,14 +36,9 @@ namespace BackendCommon
 
         public TimeSpan Timeout
         {
-            get
-            {
-                return this.client.Timeout;
-            }
-            set
-            {
-                this.client.Timeout = value;
-            }
+            get => this.client.Timeout;
+
+            set => this.client.Timeout = value;
         }
 
         public Task<string> GetAsync(string link)

@@ -6,7 +6,7 @@ namespace ClientAssignment.Views
     {
         public Email()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

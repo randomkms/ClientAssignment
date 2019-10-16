@@ -1,8 +1,8 @@
-﻿using ClientAssignment.Interfaces;
+﻿using System.Threading;
+using ClientAssignment.Interfaces;
 using ClientAssignment.Views;
 using MaterialDesignThemes.Wpf;
 using Prism.Ioc;
-using System.Threading;
 
 namespace ClientAssignment.Helpers
 {
