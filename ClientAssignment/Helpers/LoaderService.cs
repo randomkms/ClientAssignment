@@ -8,16 +8,16 @@ namespace ClientAssignment.Helpers
 {
     public class LoaderService : ILoaderService
     {
-        private readonly IContainerExtension _container;
+        private readonly IContainerExtension container;
 
         public LoaderService(IContainerExtension container)
         {
-            this._container = container;
+            this.container = container;
         }
 
         public void Show(CancellationTokenSource cancellationTokenSource = null)
         {
-            DialogHost.Show(this._container.Resolve<Loader>(), (sender, args) =>
+            DialogHost.Show(this.container.Resolve<Loader>(), (sender, args) =>
             {
                 if (args.Parameter != null)
                 {

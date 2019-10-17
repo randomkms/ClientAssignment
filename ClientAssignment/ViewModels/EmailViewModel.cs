@@ -13,35 +13,49 @@ namespace ClientAssignment.ViewModels
 {
     public class EmailViewModel : BindableBase, INavigationAware
     {
-        private readonly ISignatureService _signatureService;
-        private readonly IRegionManager _regionManager;
-        private readonly ILoaderService _loaderService;
+        private readonly ISignatureService signatureService;
+        private readonly IRegionManager regionManager;
+        private readonly ILoaderService loaderService;
 
-        private User _user;
-        private Signature _selectedSignature;
+        private User user;
+        private Signature selectedSignature;
+
+        public EmailViewModel(ISignatureService signatureService, IRegionManager regionManager, ILoaderService loaderService)
+        {
+            this.signatureService = signatureService;
+            this.regionManager = regionManager;
+            this.loaderService = loaderService;
+            this.RenderCommand = new DelegateCommand<string>(this.RenderClicked, this.CanRender).ObservesProperty(() => this.SelectedSignature);
+        }
 
         public User CurrentUser
         {
-            get => this._user;
+            get => this.user;
 
-            set => this.SetProperty(ref this._user, value);
+            set => this.SetProperty(ref this.user, value);
         }
 
         public Signature SelectedSignature
         {
-            get => this._selectedSignature;
+            get => this.selectedSignature;
 
-            set => this.SetProperty(ref this._selectedSignature, value);
+            set => this.SetProperty(ref this.selectedSignature, value);
         }
 
         public DelegateCommand<string> RenderCommand { get; set; }
 
-        public EmailViewModel(ISignatureService signatureService, IRegionManager regionManager, ILoaderService loaderService)
+        public bool IsNavigationTarget(NavigationContext navigationContext)
         {
-            this._signatureService = signatureService;
-            this._regionManager = regionManager;
-            this._loaderService = loaderService;
-            this.RenderCommand = new DelegateCommand<string>(this.RenderClicked, this.CanRender).ObservesProperty(() => this.SelectedSignature);
+            return true;
+        }
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        {
+        }
+
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+            this.CurrentUser = navigationContext.Parameters["user"] as User;
         }
 
         private bool CanRender(string signatureId)
@@ -52,11 +66,11 @@ namespace ClientAssignment.ViewModels
         private async void RenderClicked(string signatureId)
         {
             var cancelTokenSource = new CancellationTokenSource();
-            this._loaderService.Show(cancelTokenSource);
+            this.loaderService.Show(cancelTokenSource);
             string html = null;
             try
             {
-                html = await this._signatureService.GetHtmlById(signatureId, cancelTokenSource.Token);
+                html = await this.signatureService.GetHtmlById(signatureId, cancelTokenSource.Token);
             }
             catch (ApiException apiEx)
             {
@@ -75,28 +89,14 @@ namespace ClientAssignment.ViewModels
             }
             finally
             {
-                this._loaderService.Hide();
+                this.loaderService.Hide();
             }
 
             var parameters = new NavigationParameters
             {
                 { "html", html }
             };
-            this._regionManager.RequestNavigate("BrowserRegion", "Browser", parameters);
-        }
-
-        public bool IsNavigationTarget(NavigationContext navigationContext)
-        {
-            return true;
-        }
-
-        public void OnNavigatedFrom(NavigationContext navigationContext)
-        {
-        }
-
-        public void OnNavigatedTo(NavigationContext navigationContext)
-        {
-            this.CurrentUser = navigationContext.Parameters["user"] as User;
+            this.regionManager.RequestNavigate("BrowserRegion", "Browser", parameters);
         }
     }
 }

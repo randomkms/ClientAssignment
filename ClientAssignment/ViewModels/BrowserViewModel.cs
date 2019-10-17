@@ -5,17 +5,17 @@ namespace ClientAssignment.ViewModels
 {
     public class BrowserViewModel : BindableBase, INavigationAware
     {
-        private string _renderedHTML;
-        public string RenderedHTML
-        {
-            get => this._renderedHTML;
-
-            set => this.SetProperty(ref this._renderedHTML, value);
-        }
+        private string renderedHTML;
 
         public BrowserViewModel()
         {
+        }
 
+        public string RenderedHTML
+        {
+            get => this.renderedHTML;
+
+            set => this.SetProperty(ref this.renderedHTML, value);
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)

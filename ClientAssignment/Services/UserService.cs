@@ -12,15 +12,16 @@ namespace ClientAssignment.Services
 {
     public class UserService : ServiceBase, IUserService
     {
-        private readonly IRestService _restService;
+        private readonly IRestService restService;
+
         public UserService(IRestService restService)
         {
-            this._restService = restService;
+            this.restService = restService;
         }
 
         public async Task<User> GetById(string id, CancellationToken cancellationToken)
         {
-            string response = await this._restService.GetAsync($"users/get?uid={id}&without_signatures=true", cancellationToken);
+            string response = await this.restService.GetAsync($"users/get?uid={id}&without_signatures=true", cancellationToken);
             this.EnsureSuccess(response);
             var dataObj = JObject.Parse(response);
             var user = new User

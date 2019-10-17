@@ -13,27 +13,28 @@ namespace ClientAssignment.ViewModels
 {
     public class SearchViewModel : BindableBase
     {
-        private readonly IUserService _userService;
-        private readonly IRegionManager _regionManager;
-        private readonly ILoaderService _loaderService;
+        private readonly IUserService userService;
+        private readonly IRegionManager regionManager;
+        private readonly ILoaderService loaderService;
 
-        private string _userId = "5059537892278272";
-        public string UserId
-        {
-            get => this._userId;
-
-            set => this.SetProperty(ref this._userId, value);
-        }
-
-        public DelegateCommand<string> SearchCommand { get; set; }
+        private string userId = "5059537892278272";
 
         public SearchViewModel(IUserService userService, IRegionManager regionManager, ILoaderService loaderService)
         {
-            this._userService = userService;
-            this._regionManager = regionManager;
-            this._loaderService = loaderService;
+            this.userService = userService;
+            this.regionManager = regionManager;
+            this.loaderService = loaderService;
             this.SearchCommand = new DelegateCommand<string>(this.SearchClicked, this.CanSearch).ObservesProperty(() => this.UserId);
         }
+
+        public string UserId
+        {
+            get => this.userId;
+
+            set => this.SetProperty(ref this.userId, value);
+        }
+
+        public DelegateCommand<string> SearchCommand { get; set; }
 
         private bool CanSearch(string userId)
         {
@@ -42,15 +43,15 @@ namespace ClientAssignment.ViewModels
 
         private async void SearchClicked(string userId)
         {
-            this._regionManager.Regions["EmailRegion"].RemoveAll();
-            this._regionManager.Regions["BrowserRegion"].RemoveAll();
+            this.regionManager.Regions["EmailRegion"].RemoveAll();
+            this.regionManager.Regions["BrowserRegion"].RemoveAll();
 
             var cancelTokenSource = new CancellationTokenSource();
-            this._loaderService.Show(cancelTokenSource);
+            this.loaderService.Show(cancelTokenSource);
             User user = null;
             try
             {
-                user = await this._userService.GetById(userId, cancelTokenSource.Token);
+                user = await this.userService.GetById(userId, cancelTokenSource.Token);
             }
             catch (ApiException apiEx)
             {
@@ -69,14 +70,14 @@ namespace ClientAssignment.ViewModels
             }
             finally
             {
-                this._loaderService.Hide();
+                this.loaderService.Hide();
             }
 
             var parameters = new NavigationParameters
             {
                 { "user", user }
             };
-            this._regionManager.RequestNavigate("EmailRegion", "Email", parameters);
+            this.regionManager.RequestNavigate("EmailRegion", "Email", parameters);
         }
     }
 }
