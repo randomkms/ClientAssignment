@@ -34,6 +34,7 @@ namespace ClientAssignment
         {
             var regionManager = this.Container.Resolve<IRegionManager>();
             regionManager.RequestNavigate("SearchRegion", "Search");
+            regionManager.RequestNavigate("BrowserRegion", "Browser"); // for browser component initialization
             base.OnInitialized();
         }
     }

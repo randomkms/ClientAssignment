@@ -5,16 +5,18 @@
         prism:ViewModelLocator.AutoWireViewModel="True"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="{Binding Title}"
-        Height="400"
-        Width="550"
+        Height="685"
+        Width="580"
         MinHeight="400"
         MinWidth="500"
+        MaxWidth="650"
+        WindowStartupLocation="CenterScreen"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.FontWeight="Medium"
         TextElement.FontSize="16"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
-    <materialDesign:DialogHost Identifier="RootDialog" CloseOnClickAway="False">
+    <materialDesign:DialogHost CloseOnClickAway="False">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition MaxHeight="110" />
@@ -22,9 +24,13 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <ContentControl prism:RegionManager.RegionName="SearchRegion" MaxWidth="550" />
-            <ContentControl Grid.Row="1" prism:RegionManager.RegionName="EmailRegion" MaxWidth="550" />
-            <ContentControl Grid.Row="2" prism:RegionManager.RegionName="BrowserRegion" />
+            <ContentControl prism:RegionManager.RegionName="SearchRegion"
+                            MaxWidth="550" />
+            <ContentControl prism:RegionManager.RegionName="EmailRegion"
+                            Grid.Row="1"
+                            MaxWidth="550" />
+            <ContentControl prism:RegionManager.RegionName="BrowserRegion"
+                            Grid.Row="2" />
         </Grid>
     </materialDesign:DialogHost>
 </Window>

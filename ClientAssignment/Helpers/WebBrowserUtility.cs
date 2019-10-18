@@ -2,6 +2,8 @@
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using CefSharp;
+using CefSharp.Wpf;
 
 namespace ClientAssignment.Helpers
 {
@@ -28,12 +30,20 @@ namespace ClientAssignment.Helpers
         {
             try
             {
-                if (!(o is WebBrowser webBrowser))
+                if (!(o is ChromiumWebBrowser webBrowser))
                 {
                     return;
                 }
 
-                webBrowser.NavigateToString(e.NewValue as string ?? "&nbsp;");
+                string html = e.NewValue as string;
+                if (webBrowser.Dispatcher.CheckAccess())
+                {
+                    webBrowser.LoadHtml(html);
+                }
+                else
+                {
+                    webBrowser.Dispatcher.BeginInvoke(new Action(() => webBrowser.LoadHtml(html)));
+                }
             }
             catch (Exception ex)
             {

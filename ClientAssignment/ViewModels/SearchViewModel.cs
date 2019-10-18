@@ -2,8 +2,10 @@
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
+using ClientAssignment.Helpers;
 using ClientAssignment.Interfaces;
 using ClientAssignment.Models;
+using ClientAssignment.Views;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
@@ -43,8 +45,8 @@ namespace ClientAssignment.ViewModels
 
         private async void SearchClicked(string userId)
         {
-            this.regionManager.Regions["EmailRegion"].RemoveAll();
-            this.regionManager.Regions["BrowserRegion"].RemoveAll();
+            this.regionManager.DeactivateView<Email>("EmailRegion");
+            this.regionManager.DeactivateView<Browser>("BrowserRegion");
 
             var cancelTokenSource = new CancellationTokenSource();
             this.loaderService.Show(cancelTokenSource);

@@ -13,7 +13,8 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.LightGreen.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+            <Style TargetType="{x:Type Button}"
+                   BasedOn="{StaticResource MaterialDesignRaisedButton}">
                 <Setter Property="Height" Value="Auto" />
                 <Setter Property="Width" Value="Auto" />
                 <Setter Property="MinHeight" Value="35" />

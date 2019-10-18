@@ -1,10 +1,13 @@
 ﻿<UserControl x:Class="ClientAssignment.Views.Browser"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:prism="http://prismlibrary.com/"             
-             prism:ViewModelLocator.AutoWireViewModel="True"
-             xmlns:localHelpers="clr-namespace:ClientAssignment.Helpers">
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:cefsharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+             xmlns:localHelpers="clr-namespace:ClientAssignment.Helpers"
+             prism:ViewModelLocator.AutoWireViewModel="True">
     <Grid>
-        <WebBrowser Margin="30, 10" localHelpers:WebBrowserUtility.BindableHTML="{Binding RenderedHTML}" />
+        <cefsharp:ChromiumWebBrowser Margin="30"
+                                     localHelpers:WebBrowserUtility.BindableHTML="{Binding RenderedHTML}"
+                                     MenuHandler="{localHelpers:CustomBrowserMenuHandler}" />
     </Grid>
 </UserControl>

@@ -6,28 +6,25 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:ClientAssignment.Views"
              mc:Ignorable="d">
-    <StackPanel
-        Margin="16">
-        <ProgressBar
-          Style="{DynamicResource MaterialDesignCircularProgressBar}"
-          HorizontalAlignment="Center"
-          Margin="16"
-          IsIndeterminate="True"
-          Value="0"
-            RenderTransformOrigin="0.5,0.5">
+    <StackPanel Margin="16">
+        <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}"
+                     HorizontalAlignment="Center"
+                     Margin="16"
+                     IsIndeterminate="True"
+                     Value="0"
+                     RenderTransformOrigin="0.5,0.5">
             <ProgressBar.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="2" ScaleY="2"/>
                 </TransformGroup>
             </ProgressBar.RenderTransform>
         </ProgressBar>
-        <Button
-          Style="{StaticResource MaterialDesignFlatButton}"
-          IsCancel="True"
-          Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
-          CommandParameter="Cancel"
-          HorizontalAlignment="Center">
-            CANCEL
-        </Button>
+        
+        <Button Style="{StaticResource MaterialDesignFlatButton}"
+                IsCancel="True"
+                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                CommandParameter="Cancel"
+                HorizontalAlignment="Center"
+                Content="CANCEL" />
     </StackPanel>
 </UserControl>
