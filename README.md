@@ -8,3 +8,6 @@ Building instructions:
 Running instructions:
 1. Make sure `Visual C++ 2015` is installed (`x86` or `x64` depending on your build)
 2. Run ClientAssignment.exe
+
+
+P.S. The CefSharp ChromiumWebBrowser component based on the chromium engine was used, because the standard component WebBrowser in WPF is based on the Explorer engine and has problems with displaying complex markup as well as visual rendering problems.
