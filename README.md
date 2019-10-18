@@ -6,7 +6,7 @@ Building instructions:
 4. Build/Run the project (ctrl+F5 or F5)
 
 Running instructions:
-1. Make sure `Visual C++ 2015` is installed (`x86` or `x64` depending on your build)
+1. Make sure `Visual C++ 2015` is installed (`x86` or `x64` depending on your build). Download link - https://www.microsoft.com/en-us/download/details.aspx?id=52685
 2. Run ClientAssignment.exe
 
 
