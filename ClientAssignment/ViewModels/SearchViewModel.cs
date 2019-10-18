@@ -19,7 +19,7 @@ namespace ClientAssignment.ViewModels
         private readonly IRegionManager regionManager;
         private readonly ILoaderService loaderService;
 
-        private string userId = "5059537892278272";
+        private string userId;
 
         public SearchViewModel(IUserService userService, IRegionManager regionManager, ILoaderService loaderService)
         {
@@ -40,7 +40,7 @@ namespace ClientAssignment.ViewModels
 
         private bool CanSearch(string userId)
         {
-            return !string.IsNullOrWhiteSpace(this.UserId); //change
+            return !string.IsNullOrWhiteSpace(userId);
         }
 
         private async void SearchClicked(string userId)
